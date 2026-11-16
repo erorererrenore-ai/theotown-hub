@@ -1,0 +1,37 @@
+name: Submit a plugin
+description: Add your TheoTown plugin to the hub
+title: "[Plugin] "
+labels: ["plugin-submission"]
+body:
+  - type: input
+    id: name
+    attributes: {label: Plugin name}
+    validations: {required: true}
+  - type: dropdown
+    id: category
+    attributes:
+      label: Category
+      options: [Residential, Commercial, Industrial, Transport, Decoration, Scripts and Mods, Textures]
+    validations: {required: true}
+  - type: input
+    id: version
+    attributes: {label: Version, placeholder: "1.0"}
+  - type: textarea
+    id: desc
+    attributes: {label: Description, description: What it adds, size, requirements}
+    validations: {required: true}
+  - type: input
+    id: download
+    attributes: {label: Download link (https), description: GitHub Release, Drive or Mediafire}
+    validations: {required: true}
+  - type: input
+    id: image
+    attributes: {label: Preview image link (optional)}
+  - type: checkboxes
+    id: rules
+    attributes:
+      label: Confirm
+      options:
+        - label: This is my own work or I have permission to share it
+          required: true
+          
