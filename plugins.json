@@ -1,0 +1,4 @@
+[
+ {"id":"apartments-500","name":"500 Apartments Pack","author":"YOURNAME","category":"Residential","version":"1.0","date":"2026-11-15","desc":"500 residential 1x1 apartments with PNG sprites, level 1, population 100 to 300, taller buildings.","download":"https://github.com/YOURNAME/theotown-hub/releases/latest","image":""},
+ {"id":"port-level-1","name":"Port Level 1","author":"YOURNAME","category":"Transport","version":"1.0","date":"2026-10-30","desc":"Level 1 port, 10x10, 50,000 workers, height 2. Tested for no water issues or missing bmp errors.","download":"https://github.com/YOURNAME/theotown-hub/releases/latest","image":""}
+]
