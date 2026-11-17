@@ -98,8 +98,10 @@ function head(){$("hi").textContent=me?"Hi, "+nm():"Hi, guest";$("av").textConte
  $("sub").textContent=me?"You are signed in":"Sign in to upload and comment";acct();route()}
 function acct(){var a=$("ax");
  if(!sb){a.innerHTML='<div class="mu">Not connected.</div>';return}
- if(!me){a.innerHTML='<div class="mu" style="margin-bottom:10px">Enter your email. We send you a login link, no password needed.</div><input id="em2" type="email" placeholder="you@email.com"><button class="btn" id="go" style="width:100%">Send login link</button><div class="mu" id="am" style="margin-top:10px"></div>';
-  $("go").onclick=function(){var e=$("em2").value.trim();if(!e)return;sb.auth.signInWithOtp({email:e,options:{emailRedirectTo:location.href.split("#")[0]}}).then(function(r){$("am").textContent=r.error?"Error: "+r.error.message:"Link sent! Open your email on this phone and tap it."})}}
+ if(!me){a.innerHTML='<div class="mu" style="margin-bottom:10px">Sign in, or create a new account.</div><input id="em2" type="email" placeholder="you@email.com"><input id="pw" type="password" placeholder="Password (6+ characters)"><div class="row"><button class="btn" id="si" style="flex:1">Sign in</button><button class="btn g" id="su" style="flex:1">Create account</button></div><div class="mu" id="am" style="margin-top:12px"></div>';
+  function cred(){return{email:$("em2").value.trim(),password:$("pw").value}}
+  $("si").onclick=function(){var c=cred();if(!c.email||!c.password)return;$("am").textContent="Signing in…";sb.auth.signInWithPassword(c).then(function(r){$("am").textContent=r.error?"Error: "+r.error.message:""})};
+  $("su").onclick=function(){var c=cred();if(!c.email||c.password.length<6){$("am").textContent="Enter an email and a password of 6+ characters.";return}$("am").textContent="Creating…";sb.auth.signUp(c).then(function(r){$("am").textContent=r.error?"Error: "+r.error.message:(r.data.session?"":"Account created. Now tap Sign in.")})}}
  else{a.innerHTML='<div class="cm inset">'+esc(me.email)+'</div><input id="dn" placeholder="Display name" value="'+esc(nm())+'"><button class="btn" id="sn">Save name</button> <button class="btn g" id="so">Sign out</button>';
   $("sn").onclick=function(){sb.auth.updateUser({data:{name:$("dn").value.trim()}}).then(function(r){if(r.error)toast(r.error.message);else{me=r.data.user;head()}})};
   $("so").onclick=function(){sb.auth.signOut()}}}
